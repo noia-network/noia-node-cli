@@ -1,0 +1,27 @@
+{
+  "name": "node-terminal",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "noia-node": "git+https://github.com/noia-network/noia-node.git"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noia-network/node-terminal.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "NOIA Network Limited"
+  },
+  "license": "LGPL-2.1",
+  "bugs": {
+    "url": "https://github.com/noia-network/node-terminal/issues"
+  },
+  "homepage": "https://github.com/noia-network/node-terminal#readme"
+}
