@@ -2,13 +2,13 @@
 Description=NOIA Node
 
 [Service]
-ExecStart=/usr/bin/nodejs /path/to/index.js
+ExecStart=/usr/bin/nodejs /path/to/noia-node/index.js
 Restart=always
 User=root
 Group=root
 Environment=PATH=/usr/bin:/usr/local/bin
 Environment=NODE_ENV=production
-WorkingDirectory=/path/to/index.js
+WorkingDirectory=/path/to/noia-node
 
 [Install]
 WantedBy=multi-user.target
