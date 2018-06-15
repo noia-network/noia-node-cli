@@ -14,6 +14,9 @@ node.on("started", () => {
 node.master.on("connected", () => {
   if (log) console.log("[NODE]: connected to master.")
 })
+node.master.on("error", (err) => {
+  if (log) console.log("[NODE]: could not connect to master.", err)
+})
 node.master.on("closed", info => {
   if (info && info.code !== 1000) {
     if (log) console.log(`[NODE]: connection with master closed, info =`, info)
