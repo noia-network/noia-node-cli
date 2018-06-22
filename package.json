@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "noia-node": "git+https://github.com/noia-network/noia-node.git"
+    "noia-node": "https://github.com/noia-network/noia-node.git#v0.2.4"
   },
   "devDependencies": {},
   "scripts": {
