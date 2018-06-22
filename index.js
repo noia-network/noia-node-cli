@@ -1,10 +1,15 @@
 #!/usr/bin/env node
 
+const opts = {}
+if (process.env.NOIA_NODE_MASTER_ADDRESS) {
+  opts.masterAddress = process.env.NOIA_NODE_MASTER_ADDRESS
+}
+
 const Node = require("noia-node")
 const log = true
 
 if (log) console.log("[NODE]: initializing node...")
-const node = new Node()
+const node = new Node(opts)
 if (log) console.log("[NODE]: initialized.")
 
 // Events
