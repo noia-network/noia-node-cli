@@ -1,2 +1,5 @@
 .vscode
 node_modules
+settings.json
+statistics.json
+storage
