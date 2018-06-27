@@ -22,7 +22,7 @@ if [ ! -f settings.json ]; then\n\
 printf \x27{\n\
   "isHeadless": false,\n\
   "skipBlockchain": true,\n\
-  "storage.dir": "/app/noia-node-terminal/storage",\n\
+  "storage.dir": "/home/node/storage",\n\
   "storage.size": "104857600",\n\
   "domain": "",\n\
   "ssl": false,\n\
