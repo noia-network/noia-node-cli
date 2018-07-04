@@ -5,6 +5,14 @@ if (process.env.NOIA_NODE_MASTER_ADDRESS) {
   opts.masterAddress = process.env.NOIA_NODE_MASTER_ADDRESS
 }
 
+if (process.env.NOIA_NODE_WS_PORT) {
+  opts.wsPort = process.env.NOIA_NODE_WS_PORT;
+}
+
+if (process.env.NOIA_NODE_WALLET_ADDRESS) {
+  opts.walletAddress = process.env.NOIA_NODE_WALLET_ADDRESS;
+}
+
 const Node = require("@noia-network/node")
 const log = true
 
