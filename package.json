@@ -1,10 +1,13 @@
 {
-    "name": "node-terminal",
+    "name": "@noia-network/node-terminal",
     "version": "0.1.2",
     "description": "",
     "main": "index.js",
     "dependencies": {
-        "noia-node": "https://github.com/noia-network/noia-node.git#v0.2.4"
+        "@noia-network/node": "0.2.6"
+    },
+    "bin": {
+        "noia-node-terminal": "./index.js"
     },
     "devDependencies": {},
     "scripts": {
