@@ -73,10 +73,11 @@ node.clientSockets.on("resourceSent", info => {
   const url = `url = ${info.resource.url}`
   const size = `size = ${info.resource.size}`
   const sizeMB = `size = ${info.resource.size/1024/1024}`
+  const type = `type = ${info.type}`
   if (info.resource.url) {
     if (log) console.log(`[NODE]: HTTP sent to ${client} ${resource} ${sizeMB} ${url}`)
   } else {
-    if (log) console.log(`[NODE]: WS sent to ${client} ${resource} ${sizeMB}`)
+    if (log) console.log(`[NODE]: Resource sent to ${client} ${resource} ${sizeMB} ${type}`)
   }
 })
 node.on("destroyed", () => {
