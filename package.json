@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "dependencies": {
-        "@noia-network/node": "0.3.12"
+        "@noia-network/node": "0.3.13"
     },
     "bin": {
         "noia-node-terminal": "./index.js"
