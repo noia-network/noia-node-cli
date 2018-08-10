@@ -2,12 +2,14 @@
 Description=NOIA Node
 
 [Service]
-ExecStart=/usr/bin/nodejs /path/to/noia-node/index.js
+# If script not installed globally, change next line.
+ExecStart=/usr/bin/noia-node-cli
 Restart=always
 User=root
 Group=root
 Environment=PATH=/usr/bin:/usr/local/bin
 Environment=NODE_ENV=production
+# Change working directory.
 WorkingDirectory=/path/to/noia-node
 
 [Install]

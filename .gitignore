@@ -1,6 +1,6 @@
-.vscode
 node_modules
-settings.json
 statistics.json
+/settings.json
 metadata.json
 storage
+dist
