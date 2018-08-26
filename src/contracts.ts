@@ -2,13 +2,14 @@ export interface NoiaNodeSettings {
     isHeadless: boolean;
     userDataPath?: string;
     settingsPath: string;
+    statisticsPath: string;
     storageDir: string;
     storageSize: string;
     domain: string;
     ssl: boolean;
-    privateKeyPath: string;
-    crtPath: string;
-    crtBundlePath: string;
+    sslPrivateKeyPath: string;
+    sslCrtPath: string;
+    sslCrtBundlePath: string;
     publicIp: string;
     http: boolean;
     httpIp: string;

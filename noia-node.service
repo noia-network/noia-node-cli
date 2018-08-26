@@ -2,15 +2,17 @@
 Description=NOIA Node
 
 [Service]
-# If script not installed globally, change next line.
+# If script is installed locally, set its location.
 ExecStart=/usr/bin/noia-node-cli
 Restart=always
 User=root
 Group=root
 Environment=PATH=/usr/bin:/usr/local/bin
 Environment=NODE_ENV=production
-# Change working directory.
+# Set working directory.
 WorkingDirectory=/path/to/noia-node
+# Set NOIA data location.
+Environment=NOIA_NODE_USER_DATA_PATH=/path/to/noia-node-data
 
 [Install]
 WantedBy=multi-user.target
