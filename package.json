@@ -1,6 +1,6 @@
 {
     "name": "@noia-network/node-cli",
-    "version": "0.2.1",
+    "version": "0.2.2",
     "description": "",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -37,17 +37,20 @@
         "@types",
         "!/examples"
     ],
+    "engine": {
+        "node": "~8.11.4"
+    },
     "keywords": [],
     "author": {
         "name": "NOIA Network Limited"
     },
     "license": "LGPL-2.1",
     "bugs": {
-        "url": "https://github.com/noia-network/node-terminal/issues"
+        "url": "https://github.com/noia-network/noia-node-cli/issues"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/noia-network/node-terminal.git"
+        "url": "git+https://github.com/noia-network/noia-node-cli.git"
     },
-    "homepage": "https://github.com/noia-network/node-terminal#readme"
+    "homepage": "https://github.com/noia-network/noia-node-cli#readme"
 }

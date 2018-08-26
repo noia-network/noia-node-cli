@@ -15,17 +15,17 @@ export const ArgsHandler = yargs
     .alias("v", "version")
     // CLI Options
     .option(flagName("userDataPath"), {
-        description: "Path to 'settings.json'.",
-        type: "string"
-    })
-    // .option(flagName("statisticsPath"), {
-    //     description: "Path to 'statistics.json'.",
-    //     type: "string"
-    // })
-    .option(flagName("userDataPath"), {
         description:
             // tslint:disable-next-line:max-line-length
             "Path to user user data folder. If specified, default 'settings.json' and/or 'statistics.json' will be saved to user data folder.",
+        type: "string"
+    })
+    .option(flagName("settingsPath"), {
+        description: "Path to 'settings.json'.",
+        type: "string"
+    })
+    .option(flagName("statisticsPath"), {
+        description: "Path to 'statistics.json'.",
         type: "string"
     })
     .option(flagName("storageDir"), {
@@ -40,22 +40,22 @@ export const ArgsHandler = yargs
         description: "Domain SSL is valid for.",
         type: "string"
     })
-    // .option(flagName("ssl"), {
-    //     description: "True to use secure connections.",
-    //     type: "boolean"
-    // })
-    // .option(flagName("sslPrivateKeyPath"), {
-    //     description: "Path to SSL private key.",
-    //     type: "string"
-    // })
-    // .option(flagName("sslCrtPath"), {
-    //     description: "Path to certificate.",
-    //     type: "string"
-    // })
-    // .option(flagName("sslCrtBundlePath"), {
-    //     description: "Path to certificate bundle.",
-    //     type: "string"
-    // })
+    .option(flagName("ssl"), {
+        description: "True to use secure connections.",
+        type: "boolean"
+    })
+    .option(flagName("sslPrivateKeyPath"), {
+        description: "Path to SSL private key.",
+        type: "string"
+    })
+    .option(flagName("sslCrtPath"), {
+        description: "Path to certificate.",
+        type: "string"
+    })
+    .option(flagName("sslCrtBundlePath"), {
+        description: "Path to certificate bundle.",
+        type: "string"
+    })
     .option(flagName("publicIp"), {
         description: "Public IP that master must use. If empty, master must resolve IP by itself.",
         type: "string"

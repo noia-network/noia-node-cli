@@ -31,6 +31,18 @@ async function main(): Promise<void> {
     );
 
     const node = new NoiaNode(settings);
+    // tslint:disable-next-line:no-any
+    node.master.on("connected", async (info: any) => {
+        const currentIp: string = node.settings.settings[node.settings.Options.wrtcDataIp];
+        const nextExternalIp: string = info.params.externalIp;
+        if (currentIp !== nextExternalIp) {
+            node.settings.update(node.settings.Options.wrtcDataIp, info.params.externalIp);
+            console.info(`[noia-node] External IP (wrtcDataIp) changed. From ${currentIp} to ${nextExternalIp}.`);
+
+            await node.stop();
+            node.start();
+        }
+    });
     node.start();
 }
 
