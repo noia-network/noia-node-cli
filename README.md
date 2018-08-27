@@ -6,6 +6,14 @@ This is noia-node headless command line for [noia-node][noia-node].
 
 If you want to use globally
 
+Make sure you are root. If not, type:
+
+```sh
+$ su -
+```
+
+Install noia-node-cli:
+
 ```sh
 $ npm install @noia-network/node-cli -g
 ```
