@@ -4,7 +4,11 @@ This is noia-node headless command line for [noia-node][noia-node].
 
 ## Get started
 
-If you want to use globally
+### NPM
+
+If you want to use globally. 
+
+**NOTICE**: You need administrator rights to install globally.
 
 ```sh
 $ npm install @noia-network/node-cli -g
@@ -21,6 +25,10 @@ or environment variable
 ```sh
 NOIA_NODE_MASTERS_ADDRESS=ws://csl-masters.noia.network:5565 noia-node-cli
 ```
+
+### Docker
+
+NOIA Node can be run in Docker. [Docker Guide](https://github.com/noia-network/node-docker).
 
 ## (Linux) Register as a SystemD service
 
@@ -64,6 +72,11 @@ For configuration guidelines please refer to [noia-node](https://github.com/noia
 | --controllerIp      | NOIA_NODE_CONTROLLER_IP        |
 | --controllerPort    | NOIA_NODE_CONTROLLER_PORT      |
 | --skipBlockchain    | NOIA_NODE_SKIP_BLOCKCHAIN      |
+
+
+## Contributing
+
+Read contribution [guidelines here](CONTRIBUTING.md).
 
 ## License
 
