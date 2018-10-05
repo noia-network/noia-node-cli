@@ -1,26 +1,15 @@
 #!/usr/bin/env node
-// tslint:disable-next-line:no-require-imports
-import NoiaNode = require("@noia-network/node");
-import * as updateNotifier from "update-notifier";
 import * as AppDataFolder from "app-data-folder";
 import * as fs from "fs-extra";
 import * as path from "path";
+import * as updateNotifier from "update-notifier";
 import chalk from "chalk";
+import { Node, SettingsEnum } from "@noia-network/node";
 
-import { SettingsHelpers } from "./settings-helpers";
 import { ArgsHandler } from "./cli-arguments";
-import { NoiaNodeSettings } from "./contracts";
 import { Helpers } from "./helpers";
-
-interface NodeOnConnectedDto {
-    params: {
-        externalIp: string;
-    };
-}
-
-interface NodeOnClosedDto {
-    code: number;
-}
+import { NoiaNodeSettings } from "./contracts";
+import { SettingsHelpers } from "./settings-helpers";
 
 async function main(): Promise<void> {
     let timesReconnected: number = 0;
@@ -31,7 +20,7 @@ async function main(): Promise<void> {
         packageVersion: packageJson.version
     });
 
-    // AppData or Home directory
+    // AppData or Home directory.
     const userDataPath = AppDataFolder("noia-node-cli");
     await fs.ensureDir(userDataPath);
 
@@ -43,14 +32,14 @@ async function main(): Promise<void> {
         { isHeadless: true }
     );
 
-    const node = new NoiaNode(settings);
+    const node = new Node(settings);
 
-    node.master.on("connected", async (info: NodeOnConnectedDto) => {
+    node.master.on("connected", async info => {
         timesReconnected = 0;
-        const currentIp: string = node.settings.settings[node.settings.Options.wrtcDataIp];
-        const nextExternalIp: string = info.params.externalIp;
+        const currentIp: string = node.settings.options[SettingsEnum.wrtcDataIp];
+        const nextExternalIp: string = node.master.getWire().getRemoteMetadata().externalIp;
         if (currentIp !== nextExternalIp) {
-            node.settings.update(node.settings.Options.wrtcDataIp, info.params.externalIp);
+            node.settings.update(SettingsEnum.wrtcDataIp, nextExternalIp);
             console.info(`[noia-node] External IP (wrtcDataIp) changed. From ${currentIp} to ${nextExternalIp}.`);
 
             await node.stop();
@@ -58,7 +47,7 @@ async function main(): Promise<void> {
         }
     });
 
-    node.master.on("closed", async (info: NodeOnClosedDto | undefined) => {
+    node.master.on("closed", async info => {
         try {
             await Helpers.ensureInternetConnection();
         } catch (error) {
@@ -67,7 +56,7 @@ async function main(): Promise<void> {
 
         const seconds = Math.pow(2, timesReconnected);
         timesReconnected++;
-        console.info(`${chalk.green("info")}:`, `[noia-node] Will try reconnect in ${seconds} seconds.`);
+        console.info(`${chalk.green("info")}:`, `[noia-node] Will try to reconnect in ${seconds} seconds.`);
 
         setTimeout(() => {
             node.start();

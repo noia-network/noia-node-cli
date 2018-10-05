@@ -1,6 +1,9 @@
 {
+    "publishConfig": {
+        "tag": "rc"
+    },
     "name": "@noia-network/node-cli",
-    "version": "0.3.0",
+    "version": "1.0.0-rc",
     "description": "",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -12,7 +15,7 @@
         "start": "node ./dist/index.js"
     },
     "dependencies": {
-        "@noia-network/node": "0.4.1",
+        "@noia-network/node": "^1.0.0-rc",
         "@types/fs-extra": "^5.0.4",
         "@types/update-notifier": "^2.2.0",
         "@types/yargs": "^11.1.1",
