@@ -14,16 +14,16 @@ If you want to use globally.
 $ npm install @noia-network/node-cli -g
 ```
 
-For the FIRST TIME, you need to define master address. It will generate `settings.json` with defined master address.
+For the FIRST TIME, you need to define master address. It will generate `node.settings` with defined master address.
 
 ```sh
-$ noia-node-cli --masterAddress ws://csl-masters.noia.network:5565
+$ noia-node-cli --masterAddress wss://csl-masters.noia.network:5565
 ```
 
 or environment variable
 
 ```sh
-NOIA_NODE_MASTERS_ADDRESS=ws://csl-masters.noia.network:5565 noia-node-cli
+NOIA_NODE_MASTERS_ADDRESS=wss://csl-masters.noia.network:5565 noia-node-cli
 ```
 
 ### Docker
