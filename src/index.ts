@@ -1,18 +1,17 @@
 #!/usr/bin/env node
-import * as AppDataFolder from "app-data-folder";
 import * as fs from "fs-extra";
 import * as path from "path";
 import * as updateNotifier from "update-notifier";
 import chalk from "chalk";
-import { Node, SettingsEnum } from "@noia-network/node";
+import { Node } from "@noia-network/node";
+import { NodeSettings, NodeSettingsDto } from "@noia-network/node-settings";
 
 import { ArgsHandler } from "./cli-arguments";
+import { DeepPartial } from "@noia-network/node-settings/dist/contracts/types-helpers";
 import { Helpers } from "./helpers";
-import { NoiaNodeSettings } from "./contracts";
 import { SettingsHelpers } from "./settings-helpers";
 
 async function main(): Promise<void> {
-    let timesReconnected: number = 0;
     const packageJson = await fs.readJson(path.resolve(__dirname, "../package.json"));
     updateNotifier({
         updateCheckInterval: 60 * 1000,
@@ -20,54 +19,49 @@ async function main(): Promise<void> {
         packageVersion: packageJson.version
     });
 
-    // AppData or Home directory.
-    const userDataPath = AppDataFolder("noia-node-cli");
-    await fs.ensureDir(userDataPath);
-
     const { _, $0, ...CliSettings } = ArgsHandler;
-    const settings: Partial<NoiaNodeSettings> = SettingsHelpers.mergeSettings(
-        { userDataPath: userDataPath },
-        SettingsHelpers.getSettingsFromEnvironment(),
-        CliSettings,
-        { isHeadless: true }
-    );
 
-    const node = new Node(settings);
+    const settings: DeepPartial<NodeSettingsDto> = {
+        ...Helpers.removeUndefined(CliSettings),
+        ...Helpers.removeUndefined(SettingsHelpers.getSettingsFromEnvironment())
+    };
 
-    node.master.on("connected", async info => {
-        timesReconnected = 0;
-        const currentIp: string = node.settings.options[SettingsEnum.wrtcDataIp];
-        const nextExternalIp: string = node.master.getWire().getRemoteMetadata().externalIp;
+    const settingsPath = CliSettings.settingsPath != null ? CliSettings.settingsPath : NodeSettings.getDefaultSettingsPath();
+    const nodeSettings = await NodeSettings.init(settingsPath, settings);
+
+    const node = new Node({
+        interface: "cli"
+    });
+
+    await node.init(nodeSettings);
+
+    node.getMaster().on("connected", async () => {
+        const settingsWrtcScope = node
+            .getSettings()
+            .getScope("sockets")
+            .getScope("wrtc");
+        const currentIp: string | null = settingsWrtcScope.get("dataIp");
+        const nextExternalIp: string = node
+            .getMaster()
+            .getWire()
+            .getRemoteMetadata().externalIp;
         if (currentIp !== nextExternalIp) {
-            node.settings.update(SettingsEnum.wrtcDataIp, nextExternalIp);
+            settingsWrtcScope.update("dataIp", nextExternalIp);
             console.info(`[noia-node] External IP (wrtcDataIp) changed. From ${currentIp} to ${nextExternalIp}.`);
-
-            await node.stop();
-            node.start();
+            await node.restart(15);
         }
     });
 
-    node.master.on("closed", async info => {
+    node.getMaster().on("closed", async () => {
         try {
             await Helpers.ensureInternetConnection();
         } catch (error) {
             console.error(`${chalk.red("error")}:`, "[noia-node] No internet connection, please connect to the internet.");
         }
-
-        const seconds = Math.pow(2, timesReconnected);
-        timesReconnected++;
-        console.info(`${chalk.green("info")}:`, `[noia-node] Will try to reconnect in ${seconds} seconds.`);
-
-        setTimeout(() => {
-            node.start();
-        }, seconds * 1000);
     });
 
     node.on("error", (error: Error & { code?: string }) => {
-        // We only handle error on "Could not connect to master".
-        if (error.code !== "ENOTFOUND") {
-            process.exit(1);
-        }
+        // Do nothing.
     });
 
     node.start();
