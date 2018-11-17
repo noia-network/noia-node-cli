@@ -45,7 +45,7 @@ COPY --from=builder /usr/noia-node .
 # Required ports
 EXPOSE 8048/tcp 8058/tcp
 
-ENV NOIA_NODE_MASTER_ADDRESS ws://csl-masters.noia.network:5565
+ENV NOIA_NODE_MASTER_ADDRESS wss://csl-masters.noia.network:5565
 
 # Run application
 ENTRYPOINT [ "node", "./dist/index.js"]
