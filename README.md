@@ -23,7 +23,7 @@ $ noia-node-cli --masterAddress wss://csl-masters.noia.network:5565
 or environment variable
 
 ```sh
-NOIA_NODE_MASTERS_ADDRESS=wss://csl-masters.noia.network:5565 noia-node-cli
+NOIA_NODE_MASTER_ADDRESS=wss://csl-masters.noia.network:5565 noia-node-cli
 ```
 
 ### Docker
