@@ -10,8 +10,14 @@ If you want to use globally.
 
 **NOTICE**: You need administrator rights to install globally.
 
-```sh
+```
 $ npm install @noia-network/node-cli -g
+```
+
+**NOTICE**: If installation fails with administrator rights, then try suppressing the UID/GID switching when running the install command:
+
+```
+$ npm install @noia-network/node-cli -g --unsafe-perm
 ```
 
 For the FIRST TIME, you need to define master address. It will generate `node.settings` with defined master address.
