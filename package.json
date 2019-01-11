@@ -1,6 +1,6 @@
 {
     "name": "@noia-network/node-cli",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "description": "",
     "main": "./dist/index.js",
     "types": "./dist/index.d.ts",
@@ -12,8 +12,8 @@
         "start": "node ./dist/index.js"
     },
     "dependencies": {
-        "@noia-network/node": "v1.0.3",
-        "@noia-network/node-settings": "^1.0.1",
+        "@noia-network/node": "v1.0.4",
+        "@noia-network/node-settings": "^1.0.2",
         "@types/fs-extra": "^5.0.4",
         "@types/update-notifier": "^2.2.0",
         "@types/yargs": "^11.1.1",
