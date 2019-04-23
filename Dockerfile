@@ -43,7 +43,7 @@ WORKDIR /usr/noia-node
 COPY --from=builder /usr/noia-node .
 
 # Required ports
-EXPOSE 8048/tcp 8058/tcp
+EXPOSE 8048/tcp 8058/udp
 
 ENV NOIA_NODE_MASTER_ADDRESS wss://csl-masters.noia.network:5565
 
