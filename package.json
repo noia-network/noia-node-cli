@@ -1,58 +1,58 @@
 {
-    "name": "@noia-network/node-cli",
-    "version": "1.2.0",
-    "description": "",
-    "main": "./dist/index.js",
-    "types": "./dist/index.d.ts",
-    "scripts": {
-        "pretest": "tsc -p . --noEmit",
-        "test": "tslint --project . --config ./tslint.json && echo Successfully passed tslint test.",
-        "build": "tsc -p .",
-        "watch": "tsc -p . -w",
-        "start": "node ./dist/index.js"
-    },
-    "dependencies": {
-        "@noia-network/node": "v1.2.1",
-        "@noia-network/node-settings": "^1.0.2",
-        "@types/fs-extra": "^5.0.4",
-        "@types/update-notifier": "^2.2.0",
-        "@types/yargs": "^11.1.1",
-        "app-data-folder": "^1.0.0",
-        "chalk": "^2.4.1",
-        "fs-extra": "^7.0.0",
-        "tslib": "^1.9.3",
-        "update-notifier": "^2.5.0",
-        "yargs": "^12.0.1"
-    },
-    "bin": {
-        "noia-node-cli": "./dist/index.js"
-    },
-    "devDependencies": {
-        "simplr-tslint": "^1.0.0-alpha.14",
-        "tslint": "^5.11.0",
-        "tslint-language-service": "^0.9.9",
-        "typescript": "^2.9.1"
-    },
-    "files": [
-        "dist",
-        "**/*.md",
-        "@types",
-        "!/examples"
-    ],
-    "engine": {
-        "node": "~8.11.4"
-    },
-    "keywords": [],
-    "author": {
-        "name": "NOIA Network Limited"
-    },
-    "license": "LGPL-2.1",
-    "bugs": {
-        "url": "https://github.com/noia-network/noia-node-cli/issues"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/noia-network/noia-node-cli.git"
-    },
-    "homepage": "https://github.com/noia-network/noia-node-cli#readme"
+  "name": "@noia-network/node-cli",
+  "version": "1.2.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "pretest": "tsc -p . --noEmit",
+    "test": "tslint --project . --config ./tslint.json && echo Successfully passed tslint test.",
+    "build": "tsc -p .",
+    "watch": "tsc -p . -w",
+    "start": "node ./dist/index.js"
+  },
+  "dependencies": {
+    "@noia-network/node": "v1.2.1",
+    "@noia-network/node-settings": "^1.0.2",
+    "@types/fs-extra": "^5.0.4",
+    "@types/update-notifier": "^2.2.0",
+    "@types/yargs": "^11.1.1",
+    "app-data-folder": "^1.0.0",
+    "chalk": "^2.4.1",
+    "fs-extra": "^7.0.0",
+    "tslib": "^1.9.3",
+    "update-notifier": "^2.5.0",
+    "yargs": "^12.0.1"
+  },
+  "bin": {
+    "noia-node-cli": "./dist/index.js"
+  },
+  "devDependencies": {
+    "simplr-tslint": "^1.0.0-alpha.14",
+    "tslint": "^5.11.0",
+    "tslint-language-service": "^0.9.9",
+    "typescript": "^2.9.1"
+  },
+  "files": [
+    "dist",
+    "**/*.md",
+    "@types",
+    "!/examples"
+  ],
+  "engine": {
+    "node": "~8.11.4"
+  },
+  "keywords": [],
+  "author": {
+    "name": "NOIA Network Limited"
+  },
+  "license": "LGPL-2.1",
+  "bugs": {
+    "url": "https://github.com/noia-network/noia-node-cli/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/noia-network/noia-node-cli.git"
+  },
+  "homepage": "https://github.com/noia-network/noia-node-cli#readme"
 }
