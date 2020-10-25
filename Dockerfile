@@ -9,7 +9,7 @@ RUN apk update \
     && apk add \
         bash
 
-RUN npm install npm@latest -g
+RUN npm install npm@6.0 -g
 
 # Install python for native dependencies
 RUN apk --no-cache add --virtual native-deps \
@@ -20,6 +20,7 @@ WORKDIR /usr/noia-node
 
 # Copy only package.json to skip image rebuilding, when a list of dependencies has not changed since last time
 COPY ./package.json ./package.json
+COPY ./package-lock.json ./package-lock.json
 
 RUN npm install
 
